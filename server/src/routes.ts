@@ -35,13 +35,13 @@ async function routes(fastify: FastifyInstance) {
 
 function annotateColor(value: number): string {
   if (value >= 201 && value <= 1845) {
-    return 'red';
+    return '#3D00EF';
   } else if (value >= 2246 && value <= 3419) {
-    return 'green';
+    return '#990BAF';
   } else if (value >= 3820 && value <= 3419) {
-    return 'green';
+    return '#AF218C';
   } else {
-    return 'blue';
+    return '#F1622B';
   }
 }
 
