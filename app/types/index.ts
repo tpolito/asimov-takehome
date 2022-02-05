@@ -2,7 +2,7 @@ export interface IRnaData {
   annotations: [
     {
       Gene: string;
-      range: [number, number];
+      range: number[];
     }
   ];
   dataObj: {

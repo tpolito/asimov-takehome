@@ -28,6 +28,7 @@ const Home: React.FC<IHomeProps> = ({ data }) => {
           emptyColor="gray.200"
           color="blue.500"
           size="xl"
+          aria-label="Loading..."
           my={4}
         />
       ) : null}

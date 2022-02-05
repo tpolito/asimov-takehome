@@ -27,6 +27,7 @@ const PlotlyGraph: React.FC<IPlotlyGraphProps> = ({
         },
       ]}
       onInitialized={() => loadingCallback(false)}
+      aria-label="Plotly Graph"
     />
   );
 };
