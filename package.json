@@ -5,7 +5,11 @@
   "license": "MIT",
   "scripts": {
     "dev": "concurrently \"yarn run dev:server\" \"yarn run dev:app\"",
+    "install": "concurrently \"cd ./server && npm install\" \"cd ./app && npm install\"",
     "dev:server": "node server/dist/index.js",
     "dev:app": "cd ./app && yarn dev"
+  },
+  "dependencies": {
+    "concurrently": "^7.0.0"
   }
 }
