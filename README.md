@@ -3,7 +3,7 @@
 ## Running Locally
 
 ```
-$ git clone https://github.com/leerob/leerob.io.git
+$ git clone https://github.com/tpolito/asimov-takehome
 $ cd asimov-takehome
 $ npm i
 $ npm run dev
