@@ -6,6 +6,7 @@ interface IDataObj {
   x0: number[];
   y: number[];
   color: string[];
+  labels: string[];
 }
 
 async function routes(fastify: FastifyInstance) {
@@ -21,28 +22,48 @@ async function routes(fastify: FastifyInstance) {
       x0: [],
       y: [],
       color: [],
+      labels: [],
     };
 
     counts.forEach((d: any) => {
       dataObj.x.push(d.range[0].end);
       dataObj.x0.push(d.range[0].start);
       dataObj.y.push(d.count);
-      dataObj.color.push(annotateColor(d.range[0].start));
+
+      const { color, label } = getAnnotationInfo(
+        annotations[0],
+        d.range[0].start
+      );
+
+      dataObj.color.push(color);
+      dataObj.labels.push(label);
     });
-    reply.send(JSON.stringify({ dataObj, annotations }));
+    reply.send(JSON.stringify({ dataObj }));
   });
 }
 
-function annotateColor(value: number): string {
-  if (value >= 201 && value <= 1845) {
-    return '#3D00EF';
-  } else if (value >= 2246 && value <= 3419) {
-    return '#990BAF';
-  } else if (value >= 3820 && value <= 3419) {
-    return '#AF218C';
-  } else {
-    return '#F1622B';
-  }
+function getAnnotationInfo(
+  annotations: any,
+  value: number
+): { color: string; label: string } {
+  let colorList = ['#3D00EF', '#990BAF', '#F1622B', '#AF218C'];
+  let color = '';
+  let label = '';
+  let indx = 0;
+  annotations.forEach((anno: any) => {
+    let start = anno.range[0].start;
+    let end = anno.range[0].end;
+
+    if (value >= start && value <= end) {
+      color = colorList[indx % 4];
+      label = anno.Gene;
+
+      return { color, label };
+    }
+
+    indx++;
+  });
+  return { color, label };
 }
 
 export default routes;
