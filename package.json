@@ -1,0 +1,11 @@
+{
+  "name": "asimov-takehome",
+  "version": "1.0.0",
+  "author": "TPolito <hire@tpolito.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "concurrently \"yarn run dev:server\" \"yarn run dev:app\"",
+    "dev:server": "node server/dist/index.js",
+    "dev:app": "cd ./app && yarn dev"
+  }
+}
